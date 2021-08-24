@@ -24,8 +24,16 @@ export default createGlobalStyle`
       flex-direction: column;
       align-items: center;
 
-      h1 {
-        color: #FDFDFD;
+      header {
+        width: 100%;
+        max-width: 1024px;
+        padding: 20px;
+
+        h1 {
+          color: #FDFDFD;
+          font-weight: 300;
+          font-size: 3rem;
+        }
       }
     }
   }

@@ -4,7 +4,13 @@ import { Container } from './styles';
 import api from '../../services/api'
 
 const Table = () => {
-  const [tracks, setTracks] = useState([])
+  const [tracks, setTracks] = useState([]);
+
+  function play (musicId) {
+    const trackAudio = document.getElementById(musicId);
+
+    console.log(trackAudio);
+  }
 
   useEffect(() => {
     async function loadMusics() {
@@ -35,11 +41,14 @@ const Table = () => {
           tracks.map((track) => {
             return (
               <tr key={track.id}>
-                <td className="play-btn">
-                  {/* <img src="https://img.icons8.com/ios-glyphs/24/FFFFFF/play--v1.png" alt="" /> */}
-                  <img src="https://img.icons8.com/material-outlined/24/FFFFFF/pause--v1.png" alt=""/>
-                  <audio src={track.preview}></audio>
+                <td className="play-btn" id={track.id}>
+                  <button onClick={play(track.id)}>
+                    <img src="https://img.icons8.com/ios-glyphs/24/FFFFFF/play--v1.png" alt="" />
+                  </button>
+                  {/* <img src="https://img.icons8.com/material-outlined/24/FFFFFF/pause--v1.png" alt=""/> */}
+                <audio src={track.preview} />
                 </td>
+
 
                 <td className="track">
                   <img src={track.album.cover} alt="" />

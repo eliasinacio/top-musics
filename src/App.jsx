@@ -11,7 +11,10 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <GlobalStyle/>
-        <SearchBar/>
+        <header>
+          <h1>Deezer Top Musics</h1>
+          <SearchBar/>
+        </header>
         <Table />
       </Provider>
     </div>

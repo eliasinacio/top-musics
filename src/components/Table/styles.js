@@ -14,7 +14,7 @@ export const Container = styled.table`
     th {
       font-weight: 300;
       font-size: 0.9rem;
-      padding: 5px 0 5px; 
+      padding: 5px 0 5px;
       margin: 0;
       border-bottom: 0.1rem solid #dddddd66;
     }
@@ -41,10 +41,14 @@ export const Container = styled.table`
   
   tbody {
     .play-btn { 
-      img { 
-        cursor: pointer; 
-        display: none; 
-        img:hover { display: block; }
+      button {
+        background-color: transparent;
+        padding: 0;
+
+        img { 
+          cursor: pointer; 
+          padding: 5px;
+        }
       }
     }
 
@@ -57,16 +61,16 @@ export const Container = styled.table`
 
     .track { 
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 10px;
       padding: 5px 0;
       
       color: #FFF; 
       font-weight: 500;
 
-      img {
-        max-width: 52px;
-      }
+      div { padding-top: 10px; }
+
+      img { max-width: 92px; }
     }
 
     .artist {
@@ -81,6 +85,7 @@ export const Container = styled.table`
     
     .favorite-btn {
       text-align: center;
+      padding: 0 5px;
       
       .fill { display: none; }
       .empty { opacity: 0.8; }
@@ -95,6 +100,7 @@ export const Container = styled.table`
 
     tr:hover {
       background-color: #43434343;
+      .play-btn img { display: table-cell; }
     }
   }
 `;
