@@ -1,26 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Container } from './styles';
+import { useSelector, useDispatch } from 'react-redux';
 
 import api from '../../services/api'
 
 const Table = () => {
-  const [tracks, setTracks] = useState([]);
+  const tracks = useSelector(state => state.tracks);
+  const dispatch = useDispatch();
 
-  function play (musicId) {
-    const trackAudio = document.getElementById(musicId);
-
-    console.log(trackAudio);
+  const fetchAction = (data) => {
+    dispatch({
+      type: "FETCH_DATA",
+      data: data
+    })
   }
 
   useEffect(() => {
     async function loadMusics() {
-      const response = await api.get('/chart');
-
-      setTracks(response.data.tracks.data)
+      const response = await api.get('/chart.json');
+  
+      fetchAction(response.data.tracks.data);
     }
-
-    loadMusics()
-  }, [])
+  })
 
   return (
     <Container>
@@ -37,40 +38,11 @@ const Table = () => {
       </thead>
 
       <tbody>
-        {
-          tracks.map((track) => {
+        { (tracks.lenght > 0) ?? tracks.map((track) => {
             return (
-              <tr key={track.id}>
-                <td className="play-btn" id={track.id}>
-                  <button onClick={play(track.id)}>
-                    <img src="https://img.icons8.com/ios-glyphs/24/FFFFFF/play--v1.png" alt="" />
-                  </button>
-                  {/* <img src="https://img.icons8.com/material-outlined/24/FFFFFF/pause--v1.png" alt=""/> */}
-                <audio src={track.preview} />
-                </td>
-
-
-                <td className="track">
-                  <img src={track.album.cover} alt="" />
-                  <div className="title">
-                    <a href={track.link} target="_blank" rel="noreferrer">{track.title}</a> <br />
-                    <a className="artist" href={track.artist.link} target="_blank" rel="noreferrer">{track.artist.name}</a>
-                  </div>
-                </td>
-
-                <td className="album">
-                  <p>{track.album.title}</p>
-                </td>
-
-                <td className="favorite-btn">
-                  <div>
-                    <img className="fill" src="https://img.icons8.com/ios-filled/18/ffffff/star--v1.png" alt="" />
-                    <img className="empty" src="https://img.icons8.com/ios/18/dddddd/star--v1.png" alt="" />
-                  </div>
-                </td>
-
-                <td className="duration">{track.duration}</td>
-              </tr>
+              <p 
+                track={track}
+              >a</p>
             )
           })
         }

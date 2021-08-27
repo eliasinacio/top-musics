@@ -1,7 +1,5 @@
 import { Container } from "./styles"
-
-// não implementei a busca...
-
+ 
 const SearchBar = () => {
   return (
     <Container>
