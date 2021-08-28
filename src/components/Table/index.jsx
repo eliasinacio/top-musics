@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
-import { Container } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { Container } from './styles';
+import TableElement from '../TableElement'
 
 import api from '../../services/api'
 
@@ -15,13 +17,13 @@ const Table = () => {
     })
   }
 
-  useEffect(() => {
-    async function loadMusics() {
-      const response = await api.get('/chart.json');
+  async function loadMusics() {
+    const response = await api.get('/chart.json');
   
-      fetchAction(response.data.tracks.data);
-    }
-  })
+    fetchAction(response.data.tracks.data);
+  }
+
+  loadMusics();
 
   return (
     <Container>
@@ -39,11 +41,7 @@ const Table = () => {
 
       <tbody>
         { (tracks.lenght > 0) ?? tracks.map((track) => {
-            return (
-              <p 
-                track={track}
-              >a</p>
-            )
+            return <TableElement track={track}/>
           })
         }
       </tbody>

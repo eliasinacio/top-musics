@@ -41,3 +41,5 @@ const TableElement = (props) => {
     </Container>
   )
 }
+
+export default TableElement
